@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 
 
 @CucumberOptions(features = {"classpath:features"}, glue = {"stepDefinitions"},
-        tags = "@smoke", monochrome = true, dryRun = false,
+        tags = "@register", monochrome = true, dryRun = false,
         plugin = {"pretty", "html:target/cucumber", "json:target/cucumber.json", "junit:target/cucumber.xml"},publish = true
 )
 
