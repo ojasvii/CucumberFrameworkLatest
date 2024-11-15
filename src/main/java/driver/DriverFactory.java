@@ -30,12 +30,23 @@ public class DriverFactory {
             case "chrome" -> {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                chromeOptions.addArguments("--disable-popup-blocking"); // Disables pop-ups
+                chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+                chromeOptions.addArguments("--safebrowsing-disable-download-protection");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             }
             case "firefox" -> {
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                // Enable Firefox's built-in tracking protection
+                firefoxOptions.addPreference("privacy.trackingprotection.enabled", true);
+
+                // Block known advertising trackers
+                firefoxOptions.addPreference("privacy.trackingprotection.adblocker.enabled", true);
+
+                // Enable strict content blocking (might block some ads)
+                firefoxOptions.addPreference("network.http.referer.XOriginPolicy", 2);
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             }

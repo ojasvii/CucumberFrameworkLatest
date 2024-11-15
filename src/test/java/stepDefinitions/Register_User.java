@@ -1,6 +1,5 @@
 package stepDefinitions;
 
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -8,12 +7,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import pageObjects.Base_PO;
-
-import java.util.List;
 
 public class Register_User extends Base_PO {
 
+    SoftAssert softAssert = new SoftAssert();
 
     @Given("the user launches the browser")
     public void the_user_launches_the_browser() {
@@ -45,6 +44,7 @@ public class Register_User extends Base_PO {
         }
         System.out.println("NewuserSignUp: " + actualNewUserSignUp);
         Assert.assertEquals(actualNewUserSignUp, newUserText);
+        softAssert.assertAll();
     }
     @When("Enter name and email address")
     public void enter_name_and_email_address() {
@@ -66,6 +66,7 @@ public class Register_User extends Base_PO {
         WebElement accountInformationForm = getDriver().findElement(By.xpath("(//div[@class='login-form']//b)[1]"));
         String  aif  = accountInformationForm.getText();
         Assert.assertEquals(aif,information);
+        softAssert.assertAll();
     }
 
 
@@ -120,19 +121,43 @@ public class Register_User extends Base_PO {
 
     @When("Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number")
     public void fill_details_first_name_last_name_company_address_address2_country_state_city_zipcode_mobile_number() {
-
+            WebElement firstName = getDriver().findElement(By.xpath("//input[@id='first_name']"));
+            firstName.sendKeys("ojasvii");
+        WebElement lastName = getDriver().findElement(By.xpath("//input[@id='last_name']"));
+        lastName.sendKeys("singh");
+        WebElement company = getDriver().findElement(By.xpath("//input[@id='company']"));
+        company.sendKeys("Team");
+        WebElement address = getDriver().findElement(By.xpath("//input[@id='address1']"));
+        address.sendKeys("Noida 3");
+        WebElement address2 = getDriver().findElement(By.xpath("//input[@id='address2']"));
+        address2.sendKeys("Metro 16");
+        WebElement country = getDriver().findElement(By.xpath("//select[@id='country']"));
+        Select select = new Select(country);
+        select.selectByVisibleText("INDIA");
+        WebElement state = getDriver().findElement(By.xpath("//input[@id='state']"));
+        state.sendKeys("Uttar Pradesh");
+        WebElement city = getDriver().findElement(By.xpath("//input[@id='city']"));
+        city.sendKeys("Noida");
+        WebElement zipcode = getDriver().findElement(By.xpath("//input[@id='zipcode']"));
+        zipcode.sendKeys("200301");
+        WebElement mobileNumber = getDriver().findElement(By.xpath("//input[@id='mobile_number']"));
+        mobileNumber.sendKeys("9898989898");
     }
+
     @When("Click {string}")
     public void click(String string) {
-
+        WebElement createClick = getDriver().findElement(By.xpath("//button[@data-qa='create-account']"));
+        createClick.click();
     }
     @When("Click on {string} button after account created")
     public void click_on_button_after_account_created(String string) {
-
+        WebElement continueButton = getDriver().findElement(By.xpath("//section[@id='form']//a"));
+        continueButton.click();
     }
     @When("Click delete {string} button")
     public void click_delete_button(String string) {
-
+        WebElement deletAccount = getDriver().findElement(By.xpath("//header[@id='header']//ul//li[5]"));
+        deletAccount.click();
     }
     @Then("click continue {string} button after account deleted")
     public void click_continue_button_after_account_deleted(String string) {
