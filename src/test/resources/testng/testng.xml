@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CucumberTestSuite" parallel="false">
+<!--    <test name="FeatureExecutionOrder">-->
+<!--        <classes>-->
+<!--            <class name="runners.MainRunner" />-->
+<!--            <class name="runners.Register_User" />-->
+<!--        </classes>-->
+<!--    </test>-->
+    <test name="LocalTests">
+        <parameter name="env" value="local" />
+        <classes>
+            <class name="runners.Register_User" />
+        </classes>
+    </test>
+    <test name="StagingTests">
+        <parameter name="env" value="staging" />
+        <classes>
+            <class name="runners.MainRunner" />
+        </classes>
+    </test>
+</suite>

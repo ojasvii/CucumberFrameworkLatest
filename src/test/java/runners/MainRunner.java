@@ -6,9 +6,10 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 
-@CucumberOptions(features = {"classpath:features"}, glue = {"stepDefinitions"},
-        tags = "@loginInvalid", monochrome = true, dryRun = false,
-        plugin = {"pretty", "html:target/cucumber", "json:target/cucumber.json", "junit:target/cucumber.xml"},publish = true
+@CucumberOptions(features = {"classpath:features/Login.feature",}, glue = {"stepDefinitions"},
+        tags = "", monochrome = true, dryRun = false,
+        plugin = {"pretty", "html:target/cucumber", "json:target/cucumber.json", "junit:target/cucumber.xml",}
+        ,publish = true
 )
 
 public class MainRunner extends AbstractTestNGCucumberTests {
