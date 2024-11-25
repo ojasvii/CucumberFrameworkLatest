@@ -1,6 +1,21 @@
 @register
 Feature: User Signup and Account Deletion on Automation Exercise
 
+
+#When User enters following user details
+#| naveen | automation | nav@gmail.com | 99999 | Bangalore |
+#| tom | peter | tom@gmail.com | 99999 | London |
+#| lisa | dsouza | lisa@gmail.com | 8887777 | SFO |
+#Then user registration should be successful
+
+
+
+#When User enters following user details with columns
+#| firstname | lastname | email | phone | city |
+#| naveen | automation | nav@gmail.com | 99999 | Bangalore |
+#| tom | peter | tom@gmail.com | 99999 | London |
+#| lisa | dsouza | lisa@gmail.com | 8887777 | SFO |
+
   Scenario: Successful register the user
     Given the user launches the browser
     When the user navigates to the url "http://automationexercise.com"
